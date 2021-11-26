@@ -6,7 +6,7 @@ After downloading the latest Python version from www.python.org and installing i
 
 pip install MIDIUtil
 
-If you don't want to install Python, simply use the executable included.
-The program will only convert lowercase and uppercase letters, ingnoring spaces and all other signs. For best results, use short texts, such as your name, your city name, your team's name or your pet's name. You can use the resulting melody as an inspiration for music composition and production.
+If you don't want to install Python, just run the executable file included in the package.
+The program will only convert lowercase and uppercase letters, ingnoring spaces and all other punctuation signs, numbers and any non-letter characters. For best results, use short texts, such as your name, your city name, your team's name, your pet's name or a short sentence. You can use the resulting melody as an inspiration for music composition and production.
 The text must be in a file named "text.txt" and placed in the same folder of the program or the program will crash. The resulting melody will be contained in a MIDI file named "melody.mid". You can play this file through your favorite media player or import it into your favorite music program.
-There's a sample text included, containing the words "Hello World". Just open the file, replace the text and save the file to generate your own melody.
+There's a sample text included, containing the words "Hello World". Just open the file, replace the text, save the file and run the program to generate your own melody.
