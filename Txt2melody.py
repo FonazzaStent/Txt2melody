@@ -35,10 +35,10 @@ def end():
     text.close()
     midifile.close()
 
-for letters in range (1,20):
+for letters in range (1,2000):
     char=text.read(1)
     if char=='':
-        end
+        end ()
     else:
         asciicode=ord(char)
         if (asciicode>64 and asciicode<91) or (asciicode>96 and asciicode<123) or char==" ":
@@ -203,6 +203,6 @@ for letters in range (1,20):
                 time=time+1.6
 MyMIDI.writeFile(midifile)
                 
-end
+end ()
     
     
