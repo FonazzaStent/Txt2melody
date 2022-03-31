@@ -84,9 +84,8 @@ def QuitApp(event):
     
 def AddNote(note, duration):
     global time
-    time=time+(duration/5)
     MyMIDI.addNote(track, channel, note, time, duration/5, volume)
-              
+    time=time+(duration/5)          
 def WriteFile():
     data=[('MIDI', '*.mid')]
     midifile=asksaveasfilename(filetypes= data, defaultextension= data)
