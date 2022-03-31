@@ -82,9 +82,9 @@ def ClearTextBox(event):
 def QuitApp(event):
     top.destroy()
     
-def AddNote(note, duration, timevalue):
+def AddNote(note, duration):
     global time
-    time=time+timevalue
+    time=time+(duration/5)
     MyMIDI.addNote(track, channel, note, time, duration/5, volume)
               
 def WriteFile():
@@ -126,112 +126,59 @@ def GenerateMelody(event):
         char=text[letters]
         asciicode=ord(char)
         if (asciicode>64 and asciicode<91) or (asciicode>96 and asciicode<123) or char==" ":
-            if char=="A":
-                AddNote(69,1,0.2)
-            if char=="K":
-                AddNote(69,2, 0.4)
-            if char=="M":
-                AddNote(69,3, 0.6)
-            if char=="N":
-                AddNote(69,4, 0.8)
-            if char=="Z":
-                AddNote(69,5, 1)
-            if char=="k":
-                AddNote(70,1, 0.2)
-            if char=="z":
-                AddNote(70,2, 0.4)
-            if char=="V":
-                AddNote(71,1, 0.2)
-            if char=="W":
-                AddNote(71,2, 0.4)
-            if char=="X":
-                AddNote(71,3, 0.6)
-            if char=="Y":
-                AddNote(71,4, 0.8)
-            if char=="v":
-                AddNote(60,1, 0.2)
-            if char=="w":
-                AddNote(60,2, 0.4)
-            if char=="x":
-                AddNote(60,3, 0.6)
-            if char=="y":
-                AddNote(60,4, 0.8)
-            if char=="E":
-                AddNote(65,1, 0.2)
-            if char=="F":
-                AddNote(65,2, 0.4)
-            if char=="I":
-                AddNote(65,3, 0.6)
-            if char=="f":
-                AddNote(66,1, 0.2)
-            if char=="h":
-                AddNote(66,3, 0.6)
-            if char=="m":
-                AddNote(66,4, 0.8)
-            if char=="n":
-                AddNote(66,5,1)
-            if char=="r":
-                AddNote(66,6,1.2)
-            if char=="t":
-                AddNote(66,7,1.4)
-            if char=="H":
-                AddNote(67,1,0.2)
-            if char=="I":
-                AddNote(67,2,0.4)
-            if char=="L":
-                AddNote(67,3,0.6)
-            if char=="T":
-                AddNote(67,4,0.8)
-            if char=="i":
-                AddNote(68,2,0.4)
-            if char=="l":
-                AddNote(68,2,0.4)
-            if char=="B":
-                AddNote(61,1,0.2)
-            if char=="D":
-                AddNote(61,1,0.2)
-            if char=="J":
-                AddNote(61,2,0.4)
-            if char=="O":
-                AddNote(61,3,0.6)
-            if char=="P":
-                AddNote(61,4,0.8)
-            if char=="Q":
-                AddNote(61,5,1)
-            if char=="b":
-                AddNote(62,1,0.2)
-            if char=="j":
-                AddNote(62,2,0.4)
-            if char=="o":
-                AddNote(62,3,0.6)
-            if char=="p":
-                AddNote(62,4,0.8)
-            if char=="C":
-                AddNote(63,1,0.2)
-            if char=="G":
-                AddNote(63,2,0.4)
-            if char=="R":
-                AddNote(63,3,0.6)
-            if char=="S":
-                AddNote(63,4,0.8)
-            if char=="U":
-                AddNote(63,5,1)
-            if char=="a":
-                AddNote(64,1,0.2)
-            if char=="c":
-                AddNote(64,2, 0.4)
-            if char=="d":
-                AddNote(64,3,0.6)
-            if char=="e":
-                AddNote(64,4,0.8)
-            if char=="g":
-                AddNote(64,5,1)
-            if char=="q":
-                AddNote(64,6,1.2)
-            if char=="s":
-                AddNote(64,7,1.4)
-            if char=="u":
-                AddNote(64,8,1.6)
+                if char=="B" or char=="b":
+                        AddNote(61,1)
+                if char=="C" or char=="c":
+                        AddNote(61,2)
+                if char=="D" or char=="d":
+                        AddNote(62,3)
+                if char=="G" or char=="g":
+                        AddNote(62,4)
+                if char=="J" or char=="j":
+                        AddNote(63,5)
+                if char=="O" or char=="o":
+                        AddNote(63,6)
+                if char=="P" or char=="p":
+                        AddNote(64,7)
+                if char=="Q" or char=="q":
+                        AddNote(64,8)
+                if char=="R" or char=="r":
+                        AddNote(65,9)
+                if char=="S" or char=="s":
+                        AddNote(65,10)
+                if char=="U" or char=="u":
+                        AddNote(65,11)
+                if char=="E" or char=="e":
+                        AddNote(66,1)
+                if char=="F" or char=="f":
+                        AddNote(66,2)
+                if char=="H" or char=="h":
+                        AddNote(66,3)
+                if char=="I" or char=="i":
+                        AddNote(67,4)
+                if char=="L" or char=="l":
+                        AddNote(67,5)
+                if char=="T" or char=="t":
+                        AddNote(67,6)
+                if char=="A" or char=="a":
+                        AddNote(68,1)
+                if char=="K" or char=="k":
+                        AddNote(68,2)
+                if char=="M" or char=="m":
+                        AddNote(69,3)
+                if char=="N" or char=="n":
+                        AddNote(69,4)
+                if char=="V" or char=="v":
+                        AddNote(70,5)
+                if char=="X" or char=="x":
+                        AddNote(70,6)
+                if char=="Y" or char=="y":
+                        AddNote(71,7)
+                if char=="W" or char=="w":
+                        AddNote(72,8)
+                if char=="Z" or char=="z":
+                        AddNote(72,9)
+
     WriteFile()
 
           
