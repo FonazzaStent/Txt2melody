@@ -10,7 +10,7 @@ import io
 import math
 from midiutil import MIDIFile
 
-img=b'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5gMeDgAyOeZ0yQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAABRSURBVCjPtVI5DgAwCIKm/3+SH3Owm+kVe6RlVAgBpZlhBpIAxm3CIV4LSIpIM4kzOJy2cLgJ3Wn+tFSb/L9DDqpcOOywX2eYPkGq16oaswEU+FwjPek/kRkAAAAASUVORK5CYII='
+img=b'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5gQHCzMaYcK/7QAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAICSURBVFjD7Ze9zylBFId/PjZvLAqFRIJOoRIkCoVESKiVCoVSpdroiZ5/QUWnUiytRiQSUVIoRLIUS2GzH3HeioiLi71Wc59kmt3MzLNzzuyZMRERQQeapoHneRyPRySTSTgcjtcGIJ1sNhsCQABoOp2+3N8MnVwuoCiKL/fXLXDJeDx+6wt0IQjCOQQMw9BisTA2BJeoqopyuYz1ev2dFTi1eDxOk8nkqf4fETiFo9VqkaIo3xE4tVqtRrIsGyPAcRxls9k/JDqdjjECs9mMZFmmXq9HXq/3/DwUCpEkScYInBiNRsQwzPmdIAif34aXxGIx1Ot1AIDb7QbLsp//E16TSqUAAIVCAXa73XgBl8sFAMjn88bUgmsURQHHcYhEIt8RAIBKpQKLxXL3vfWTkweDQWPL8Tv8F3g6B4gIkiRBURRYrVawLAuz2fx5AUEQMBgM0O12wfM8drsdfn5+kE6nkcvlEA6HdR8q79Lv98nv9z8styaT6WYteJa7KzAcDpHJZPC3a4POa8XtJFRVFdVqVffgbwuIogie57+3DW02Gzwez8uDOZ3Of5eEjUbjYfJdt2KxSJqmvZyEdwX2+z2VSqWnJk8kErRcLt86UT3chpIkUbvdpmg0enNin89HzWaTttvt20c60zPXc0mSMJ/PsVqtcDgczjkSCATei/sFv609YQ6jT2hbAAAAAElFTkSuQmCC'
 
 root= tk.Tk()
 top= root
@@ -20,45 +20,26 @@ top.title("Convert Text to Melody")
 favicon=tk.PhotoImage(data=img) 
 root.wm_iconphoto(True, favicon)
 
-#Paste button
-pastebutton=tk.Button(top)
-pastebutton.place(relx=0.230,rely=0.911,height=24,width=67)
-pastebutton.configure(text='''Paste''')
-
-#Convert button
-Convert=tk.Button(top)
-Convert.place(relx=0.367, rely=0.911, height=24, width=100)
-Convert.configure(text='''Generate Melody''')
 
 #Textbox
-textbox = Text(top)
-textbox.place(relx=0.033, rely=0.022, relheight=0.878, relwidth=0.933)
-scroll_1=Scrollbar (top)
-scroll_1.pack(side=RIGHT, fill=Y)
-textbox.configure(yscrollcommand=scroll_1.set)
-scroll_1.configure(command=textbox.yview)
-
-#clear button
-clearbutton=tk.Button(top)
-clearbutton.place (relx=0.550, rely=0.911, height=24, width=34)
-clearbutton.configure(text='''Clear''')
-
-#quit button
-quitbutton=tk.Button(top)
-quitbutton.place (relx=0.620, rely=0.911, height=24, width=34)
-quitbutton.configure(text='''Quit''')
+def create_textbox():
+        global textbox
+        textbox = Text(top)
+        textbox.place(relx=0.033, rely=0.022, relheight=0.918, relwidth=0.933)
+        scroll_1=Scrollbar (top)
+        scroll_1.pack(side=RIGHT, fill=Y)
+        textbox.configure(yscrollcommand=scroll_1.set)
+        scroll_1.configure(command=textbox.yview)
 
 def paste_text():
         textbox.event_generate(("<<Paste>>"))
 
-menu = Menu(root, tearoff = 0)
-menu.add_command(label="Paste", command=paste_text)
 
-def context_menu(event): 
-    try: 
-        menu.tk_popup(event.x_root, event.y_root)
-    finally: 
-        menu.grab_release()
+def context_menu(event):
+        try:
+                menupaste.tk_popup(event.x_root, event.y_root)
+        finally:
+                menupaste.grab_release()
 
 def paste_from_button(event):
         textbox.event_generate(("<<Paste>>"))
@@ -71,15 +52,10 @@ def Convertfn(event):
     textbox.delete(1.0,2000.0)
     textbox.insert(INSERT, asciitxt)
 
-def Copyfn(event):
-    global text
-    text=textbox.get(1.0,2000.0)
-    pyperclip.copy(text)
-
-def ClearTextBox(event):
+def ClearTextBox():
     textbox.delete(1.0,2000.0)
 
-def QuitApp(event):
+def QuitApp():
     top.destroy()
     
 def AddNote(note, duration):
@@ -98,7 +74,7 @@ def WriteFile():
 
 #Generate Melody
         
-def GenerateMelody(event):
+def GenerateMelody():
     global track
     track    = 0
     global channel
@@ -180,15 +156,33 @@ def GenerateMelody(event):
 
     WriteFile()
 
-          
-Convert.bind("<Button-1>",GenerateMelody)
-quitbutton.bind("<Button-1>",QuitApp)
-clearbutton.bind("<Button-1>", ClearTextBox)
-pastebutton.bind("<Button-1>",paste_from_button)
-root.bind("<Button-3>", context_menu)
+#menu
+def create_menu():
+        menubar=tk.Menu(top, tearoff=0)
+        top.configure(menu=menubar)
+        sub_menu=tk.Menu(top, tearoff=0)
+        menubar.add_cascade(menu=sub_menu,compound="left", label="Edit")
+        sub_menu.add_command(compound="left", label="Paste", command=paste_text)
+        sub_menu.add_command(compound="left",label="Clear", command=ClearTextBox)
+        sub_menu1=tk.Menu(top, tearoff=0)
+        menubar.add_cascade(menu=sub_menu1,compound="left", label="Convert")
+        sub_menu1.add_command(compound="left", label="Generate Melody", command=GenerateMelody)
+        menubar.add_command(compound="left",label="Quit", command=QuitApp)
 
-textbox.focus_set()
+#contextmenu
+def create_context_menu():
+        global menupaste
+        root.bind("<Button-3>", context_menu)
+        menupaste = Menu(root, tearoff = 0)
+        menupaste.add_command(label="Paste", command=paste_text)
 
+#main procedure
+def main():
+        create_textbox()
+        create_menu()
+        create_context_menu()
+        textbox.focus_set()
+main()
 root.mainloop()
     
     
