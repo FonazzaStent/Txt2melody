@@ -1,13 +1,9 @@
 import sys
 import tkinter as tk
 import tkinter.ttk as ttk
-from tkinter.constants import *
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename
 import os
-import subprocess
-import io
-import math
 from midiutil import MIDIFile
 
 img=b'iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5gQHCzMaYcK/7QAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAICSURBVFjD7Ze9zylBFId/PjZvLAqFRIJOoRIkCoVESKiVCoVSpdroiZ5/QUWnUiytRiQSUVIoRLIUS2GzH3HeioiLi71Wc59kmt3MzLNzzuyZMRERQQeapoHneRyPRySTSTgcjtcGIJ1sNhsCQABoOp2+3N8MnVwuoCiKL/fXLXDJeDx+6wt0IQjCOQQMw9BisTA2BJeoqopyuYz1ev2dFTi1eDxOk8nkqf4fETiFo9VqkaIo3xE4tVqtRrIsGyPAcRxls9k/JDqdjjECs9mMZFmmXq9HXq/3/DwUCpEkScYInBiNRsQwzPmdIAif34aXxGIx1Ot1AIDb7QbLsp//E16TSqUAAIVCAXa73XgBl8sFAMjn88bUgmsURQHHcYhEIt8RAIBKpQKLxXL3vfWTkweDQWPL8Tv8F3g6B4gIkiRBURRYrVawLAuz2fx5AUEQMBgM0O12wfM8drsdfn5+kE6nkcvlEA6HdR8q79Lv98nv9z8styaT6WYteJa7KzAcDpHJZPC3a4POa8XtJFRVFdVqVffgbwuIogie57+3DW02Gzwez8uDOZ3Of5eEjUbjYfJdt2KxSJqmvZyEdwX2+z2VSqWnJk8kErRcLt86UT3chpIkUbvdpmg0enNin89HzWaTttvt20c60zPXc0mSMJ/PsVqtcDgczjkSCATei/sFv609YQ6jT2hbAAAAAElFTkSuQmCC'
@@ -42,6 +38,7 @@ def context_menu(event):
                 menupaste.grab_release()
 
 def paste_from_button(event):
+        textbox.tag_add(SEL, "1.0", END)
         textbox.event_generate(("<<Paste>>"))
 
 def Convertfn(event):
